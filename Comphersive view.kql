@@ -1,0 +1,16 @@
+resources
+| where type startswith "microsoft.netapp/"
+| extend 
+    resourceType = split(type, '/')[1],
+    resourceName = name,
+    provisioningState = properties.provisioningState
+| project 
+    resourceType,
+    resourceName,
+    resourceGroup,
+    location,
+    subscriptionId,
+    provisioningState,
+    properties,
+    tags
+| order by resourceType, resourceName
