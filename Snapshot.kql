@@ -1,0 +1,14 @@
+resources
+| where type == "microsoft.netapp/netappaccounts/capacitypools/volumes/snapshots"
+| extend 
+    snapshotName = name,
+    snapshotId = properties.snapshotId,
+    created = properties.created,
+    provisioningState = properties.provisioningState
+| project 
+    snapshotName,
+    resourceGroup,
+    snapshotId,
+    created,
+    provisioningState,
+    properties
