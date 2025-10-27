@@ -1,0 +1,18 @@
+resources
+| where type == "microsoft.netapp/netappaccounts"
+| extend 
+    accountId = id,
+    accountName = name,
+    activeDirectories = properties.activeDirectories,
+    encryption = properties.encryption,
+    provisioningState = properties.provisioningState
+| project 
+    accountName,
+    resourceGroup,
+    location,
+    subscriptionId,
+    provisioningState,
+    activeDirectories,
+    encryption,
+    tags,
+    properties
