@@ -1,0 +1,21 @@
+resources
+| where type == "microsoft.netapp/netappaccounts/capacitypools"
+| extend 
+    poolName = name,
+    poolSize = properties.size,
+    serviceLevel = properties.serviceLevel,
+    qosType = properties.qosType,
+    coolAccess = properties.coolAccess,
+    encryptionType = properties.encryptionType,
+    provisioningState = properties.provisioningState
+| project 
+    poolName,
+    resourceGroup,
+    location,
+    poolSize,
+    serviceLevel,
+    qosType,
+    coolAccess,
+    encryptionType,
+    provisioningState,
+    properties
